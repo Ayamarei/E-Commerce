@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+.content nav ul li i ,.content nav ul li span {
+    cursor: pointer;
+}
+
+ .card img{
+  transition: transform 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out;
+  -moz-transition: transform 0.5s ease-in-out;
+  -ms-transition: transform 0.5s ease-in-out;
+  -o-transition: transform 0.5s ease-in-out;
+  
+  
+}
+
+ .card:hover img
+ {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+
+.slider img {
+  height: 400px !important;
+}
+.slider2 img {
+  height: 200px !important;
+  width: 100%;
+}
+.apiSlider img {
+  height: 100px !important;
+  width: 100%;
+}
