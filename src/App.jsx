@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createHashRouter, RouterProvider } from 'react-router-dom'
 import Login from './Modules/Authentication/Login/Login'
 import Register from './Modules/Authentication/Register/Register'
 import NotFound from './Modules/Authentication/NotFound/NotFound'
@@ -18,7 +18,7 @@ import CartContextProvider from './Context/CartContext/CartContext'
 export default function App() {
  const  QueryClientConfig =new QueryClient()
 
- const router= createBrowserRouter([
+ const router= createHashRouter([
     {path:"",element: <MasterLayout/>,children:[
       {path:"",element:<Login/>},
       {path:"login",element:<Login/>},
