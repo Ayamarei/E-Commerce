@@ -1,68 +1,6 @@
 
 
-
-// import { useContext } from "react";
-// import { CartContext } from "../../Context/CartContext/CartContext";
-
-// export default function Cart() {
-
-//   const {getUserCard,totalCartPrice,allProduct,numOfCartItems,updateCount,deleteProduct}=  useContext(CartContext)
-//   // getUserCard()
-
-  
-
-//    function handleUpdateCount(productId,newCount){
-//     updateCount(productId,newCount)
-//    }
-
-//   return (
-//     <>
-//       <h2 className="text-start px-5 pt-3">Shop Cart :</h2>
-//       <p className="text-success px-5">Total Cart Price: {totalCartPrice} EGP</p> 
-//       <h3>{numOfCartItems}</h3>
-
-//       {allProduct?.length > 0 ? (
-//         allProduct.map((product) =>
-//           product.product ? (
-//             <div
-//               key={product._id}
-//               className="container d-flex align-items-center justify-content-between border p-3 my-2 bg-light rounded"
-//             >
-//               <div className="d-flex align-items-center">
-//                 <img
-//                   src={product.product.imageCover}
-//                   alt={product.product.title}
-//                   style={{
-//                     width: "80px",
-//                     height: "80px",
-//                     objectFit: "cover",
-//                   }}
-//                   className="me-3 rounded"
-//                 />
-//                 <div>
-//                   <h6>{product.product.title}</h6>
-//                   <p className="text-success mb-1">price : {product.price} EGP</p>
-//                   <button onClick={()=>{deleteProduct(product.product._id)}} className="btn btn-link text-danger p-0">🗑 Remove</button>
-//                 </div>
-//               </div>
-
-//               <div className="d-flex align-items-center">
-//                 <button onClick={()=>{handleUpdateCount(product.product._id,product.count+1)}} className="btn btn-outline-success">+</button>
-//                 <span className="mx-2">{product.count}</span>
-//                 <button onClick={()=>{handleUpdateCount(product.product._id,product.count-1)}} className="btn btn-outline-success">-</button>
-//               </div>
-//             </div>
-//           ) : null
-//         )
-//       ) : (
-//         <p className="text-center">Loading cart items...</p>
-//       )}
-//     </>
-//   );
-// }
-
-
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { CartContext } from "../../Context/CartContext/CartContext";
 
@@ -73,18 +11,18 @@ export default function Cart() {
     numOfCartItems,
     updateCount,
     deleteProduct,
+    getUserCard
   } = useContext(CartContext);
 
   const [showModal, setShowModal] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
 
-  // فتح المودال مع تحديد المنتج
+  
   const handleRemoveClick = (productId) => {
     setSelectedProductId(productId);
     setShowModal(true);
   };
 
-  // تأكيد الحذف
   const confirmDelete = () => {
     if (selectedProductId) {
       deleteProduct(selectedProductId);
@@ -93,10 +31,14 @@ export default function Cart() {
     setSelectedProductId(null);
   };
 
-  // تغيير الكمية
   const handleUpdateCount = (productId, newCount) => {
     updateCount(productId, newCount);
   };
+
+  useEffect(()=>{
+ getUserCard()
+  },[])
+
 
   return (
     <>
