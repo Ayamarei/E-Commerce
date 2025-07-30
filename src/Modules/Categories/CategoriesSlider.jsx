@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,14 +14,13 @@ export default function CategoriesSlider() {
   var settings = {
     dots: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 10,
     slidesToScroll: 3,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 0,
     cssEase: "linear",
-    speed: 8000,
+    speed: 6000,
 
     responsive: [
       {

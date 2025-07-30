@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, {  useState } from 'react'
+import React, {  useContext, useState } from 'react'
 import { DotLoader } from 'react-spinners'
 import ProductsSlider from './ProductsSlider'
 import img1 from '../../assets/images/blog-img-1.jpeg'
@@ -8,10 +8,28 @@ import CategoriesSlider from '../Categories/CategoriesSlider'
 import { useQuery } from '@tanstack/react-query'
 import ProductData from './ProductData'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../../Context/CartContext/CartContext'
+import { toast } from 'react-toastify'
 
 export default function Products() {
+
+  const {addToCard} = useContext(CartContext)
+  
+       const handleAdd =async(id)=>{    
+       const resFlag= await addToCard(id)
+       console.log(resFlag);
+       if (resFlag) {
+          toast.success("Added successfully")
+          
+          
+       } else {
+          toast.error("err")
+       }
+  
+       }
+  
    const [productId, setProductId] = useState(null)
-   console.log(productId);
+  //  console.log(productId);
    
 
     // FETCH DATA 
@@ -85,7 +103,7 @@ if(isLoading){
             </div>
           </div>
          </Link>
-         <button className='w-100 btn btn-success'>+add to cart</button>
+         <button onClick={()=>{handleAdd(product._id)}} className='w-100 btn btn-success'>+add to cart</button>
 
          </div>
          
@@ -94,7 +112,7 @@ if(isLoading){
     </div>
   </div>
 
-  {productId&&<ProductData productId={productId}/>}
+  {/* {productId&&<ProductData productId={productId}/>} */}
 </>
 
     )

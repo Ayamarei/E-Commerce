@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <>
-    <div className="content">
+    <div className="content fixed-top">
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container">
     <img src={freshCard} alt=" fresh card" />
@@ -48,10 +48,10 @@ export default function Navbar() {
          <i className='fa-brands fa-youtube mx-2'></i>
         </li>
         {!token?<><li className="nav-item">
-          <a className="nav-link" href="/login">Login</a>
+          <Link to={"/login"} className="nav-link">Login</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/register">Register</a>
+          <Link to={"/register"} className="nav-link" >Register</Link>
         </li></>:  <li className="nav-item">
          <span className="nav-link" onClick={handleLogOut}>Log Out</span>
         </li>}

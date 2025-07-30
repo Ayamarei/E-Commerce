@@ -1,10 +1,27 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { DotLoader } from 'react-spinners'
+import { toast } from 'react-toastify'
+import { CartContext } from '../../Context/CartContext/CartContext'
 
-export default function ProductData({productId}) {
+export default function ProductData({}) {
+
+   const {addToCard} = useContext(CartContext)
+
+     const handleAdd =async(id)=>{    
+     const resFlag= await addToCard(id)
+     console.log(resFlag);
+     if (resFlag) {
+        toast.success("Added successfully")
+        
+        
+     } else {
+        toast.error("error")
+     }
+
+     }
 
 
    const{id} =  useParams()
@@ -29,7 +46,7 @@ export default function ProductData({productId}) {
      }
 
      const product =data?.data?.data
-     console.log(product);
+    //  console.log(product);
      
   return (
     <>
@@ -42,7 +59,7 @@ export default function ProductData({productId}) {
                 <h1>{product.title} </h1>
                 <p>{product.description} </p>
                 <p>Price: {product.price} </p>
-                <button className='w-100 btn btn-success'>+add to cart</button>
+                <button onClick={()=>{handleAdd(id)}} className='w-100 btn btn-success'>+add to cart</button>
                 </div>
             </div>
           

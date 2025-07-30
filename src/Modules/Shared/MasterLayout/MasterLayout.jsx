@@ -7,7 +7,10 @@ export default function () {
   return (
     <>
     <Navbar/>
-    <Outlet/>
+    <div className=' pt-5'>
+       <Outlet/>
+    </div>
+   
     <Footer/>
     
     </>

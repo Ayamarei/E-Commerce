@@ -1,15 +1,17 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
 import { toast } from 'react-toastify'
 import * as yup from 'yup'
 import { authContext } from '../../Context/AuthContext'
+import { CartContext } from '../../../Context/CartContext/CartContext'
 
 
 export default function Login() {
  const {setToken}=  useContext(authContext)
+ const {getUserCard}=  useContext(CartContext)
 
   let user={
    
@@ -27,6 +29,7 @@ async function sendForm (value){
     toast.success(res.data.message)
     setToken(res.data.token)
     localStorage.setItem("tkn",res.data.token)
+   
     setIsLoading(false)
     navigate("/products")
 
@@ -49,6 +52,10 @@ async function sendForm (value){
      
     })
   })
+
+  useEffect(()=>{
+ getUserCard()
+  },[])
 
   return (
     < >
